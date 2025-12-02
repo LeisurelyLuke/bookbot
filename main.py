@@ -35,7 +35,7 @@ def get_book_text(book_path):
 
 def check_path():
     if len(sys.argv) < 2:
-        print("Please provide a valid book path as a command-line argument.")
+        print("Usage: python3 main.py <path_to_book>")
         sys.exit(1)
 
 
