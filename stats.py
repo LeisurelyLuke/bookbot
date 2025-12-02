@@ -1,21 +1,27 @@
-def get_book_text(book_path):
-    with open(book_path) as book:
-        return book.read()
+def get_num_words(text):
+    words = text.split()
+    return len(words) 
 
-def get_num_words():
-    book_path = "books/frankenstein.txt"
-    book_text = get_book_text(book_path)
-    num_words = len(book_text.split())
-    print(f"Found {num_words} total words")
 
-def get_unique_character_count():
-    unique_character_dict = {}
-    book_path = "books/frankenstein.txt"
-    book_text = get_book_text(book_path)
-    for character in book_text:
-        lower_character = character.lower()
-        if lower_character in unique_character_dict:
-            unique_character_dict[lower_character] += 1
+def get_chars_dict(text):
+    chars = {}
+    for c in text:
+        lower = c.lower()
+        if lower in chars:
+            chars[lower] += 1
         else:
-            unique_character_dict[lower_character] = 1
-    print(unique_character_dict)
+            chars[lower] = 1
+    return chars
+
+
+def sort_on(c):
+    return c["count"] #sorts on the "count" value inside dictionaries within sorted__character_list
+
+
+def chars_dict_to_sorted_list(chars_dict):
+    sorted_chars = []
+    for character in chars_dict:
+        if character.isalpha():
+            sorted_chars.append({"character": character, "count": chars_dict[character]})
+    sorted_chars.sort(key=sort_on, reverse=True)
+    return sorted_chars
