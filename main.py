@@ -1,3 +1,5 @@
+import sys
+
 from stats import (
     get_num_words,
     get_chars_dict,
@@ -6,7 +8,8 @@ from stats import (
 
 
 def main():
-    book_path = "books/frankenstein.txt"
+    check_path()
+    book_path = sys.argv[1] #gets book path from command-line argument
     text = get_book_text(book_path) #provides book text as a string
     num_words = get_num_words(text) #calls word-counting function from stats.py
     chars_dict = get_chars_dict(text) #calls function that creates a dictionary of characters and their counts
@@ -28,6 +31,12 @@ def print_report(book_path, num_words, sorted_chars_list):
 def get_book_text(book_path):
     with open(book_path) as book:
         return book.read()
+
+
+def check_path():
+    if len(sys.argv) < 2:
+        print("Please provide a valid book path as a command-line argument.")
+        sys.exit(1)
 
 
 main()
